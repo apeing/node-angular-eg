@@ -8,9 +8,10 @@
  * Controller of the qiniuUploadApp
  */
 angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
-	.controller('MainCtrl', function ($scope, $log, $qupload) {
+	.controller('MainCtrl', function ($scope, $log, $qupload,$http) {
 
 		$scope.selectFiles = [];
+		var uploadtoken = '';
 
 		var start = function (index) {
 			$scope.selectFiles[index].progress = {
@@ -21,7 +22,7 @@ angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
 			$scope.selectFiles[index].upload = $qupload.upload({
 				key: 'test/' + $scope.selectFiles[index].file.name,
 				file: $scope.selectFiles[index].file,
-				token: 'TXXu7FXig6oU1gLNMGERucvQvYjMvoKKQs_WQjqe:2MDqOC9M9UNnjU9HF0KVBd1VGk4=:eyJzY29wZSI6InRlc3QiLCJkZWFkbGluZSI6MTUwMjE3MjkwM30='
+				token: uploadtoken
 			});
 			console.log("end");
 			$scope.selectFiles[index].upload.then(function (response) {
@@ -39,12 +40,16 @@ angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
 		};
 
 		$scope.onFileSelect = function ($files) {
-			var offsetx = $scope.selectFiles.length;
-			for (var i = 0; i < $files.length; i++) {
-				$scope.selectFiles[i + offsetx] = {
-					file: $files[i]
-				};
-				start(i + offsetx);
-			}
+			$http.get('/qupload').then(function successFn(response){
+				uploadtoken = response && response.data && response.data.token;
+				var offsetx = $scope.selectFiles.length;
+				for (var i = 0; i < $files.length; i++) {
+					$scope.selectFiles[i + offsetx] = {
+						file: $files[i]
+					};
+					start(i + offsetx);
+				}
+			}, function errorFn(response){
+			});
 		};
 	});

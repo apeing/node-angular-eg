@@ -28,7 +28,7 @@ window.onload=function(){
             return password_tips.innerHTML='密码不能为空';
         }
 
-        window.http.post('/auth',null,{'username': username, 'password':password},function(response){
+        window.http.post('/api/auth',null,{'username': username, 'password':password},function(response){
             console.log("response : " + response.status);
             if(response.status === 200) return window.location.href='index.html';
             if(response.status === 400)

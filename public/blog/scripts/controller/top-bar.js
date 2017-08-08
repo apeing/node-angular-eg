@@ -24,7 +24,7 @@
             };
             function init(){
                 $cookies.put('deo','lxl123');
-                $http.get('/user').then(function successFn(response){
+                $http.get('/api/user').then(function successFn(response){
                     $scope.username = response && response.data && response.data.username;
                 }, function errorFn(response){
                     if (response.status === 401) return $window.location.replace('login.html?returnUrl=' + encodeURIComponent($location.path()));

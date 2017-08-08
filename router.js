@@ -10,71 +10,23 @@ const NSError = require('./app/lib/error-model');
 const User = require('./app/model/authuser');
 const JWT = require('./app/lib/json-web-token');
 const ObjectId = require('mongoose').Types.ObjectId;
+const qiniu = require('qiniu');
 
-router.post('/auth', function(req, res, next){
-    console.log("post commond");
-    var username = req.body.username;
-    var password =  req.body.password;
-    User.findOne({'username': username}, function(err, user){
-        if (err) return next(err);
-        if (!user) return next(NSError.warning('账号或密码错误，请重新输入。'));
-        var isMatch = user.comparePassword(password);
-        if (!isMatch) return next(NSError.warning('账号或密码错误，请重新输入。'));
-        var expireTime = new Date(Date.now() + 1800000);
-        var result = JWT.createTokenSync({ '_id': user.id, 'username': user.username });
-        user.secret = result.secret;
-        user.save();
-        res.cookie('token', result.token, {'expires': expireTime});
-        res.cookie('userId', user.id, { 'expires': expireTime});
-        console.log('end');
-        return res.status(200).json({});
-    });
-});
-router.use('/', function(req, res, next){
-    var userId = req.cookies.userId;
-    var token = req.cookies.token;
-    console.log("*********router use ********** token :" + token);
-    if(!userId || !token) return next(NSError.needLogin('超时，请重新登陆'));
-    if (!ObjectId.isValid(userId)) return next(NSError.needLogin(personId));
-    async.waterfall([
-        function findUser(callback){
-            User.findById(userId, function(err, user){
-                if(err) return callback(err);
-                if (!user) return callback(NSError.needLogin(userId));
-                return callback(null, user);
-            });
-        },
-        function verifyToken(user, callback){
-            JWT.verifyToken('Bearer ' + token, user.secret, function(err, decode){
-                if (err) {
-                    console.error(err);
-                    return callback(NSError.needLogin(decode));
-                }
-                if (!decode.scopes || !decode.scopes.user || decode.scopes.user._id !== user.id) return callback(NSError.needLogin('Token与用户信息不匹配'));
-                req.currentUser = user;
-                res.cookie('userId', userId, {
-                    expires: new Date(Date.now() + 7200000) //登录30分钟超时
-                });
-                res.cookie('token', token, {
-                    expires: new Date(Date.now() + 7200000) //登录30分钟超时
-                });
-                callback();
-            });
-        }
-    ], next);
-});
-
-router.get('/user',function(req, res, next){
+router.get('/qupload',function(req,res,next){
+    var bucket = 'test';
+    var accessKey = 'TXXu7FXig6oU1gLNMGERucvQvYjMvoKKQs_WQjqe';
+    var secretKey = 'VXN6Q0nf_b8MBv4fvsrCx2vCouxIdiRE-fO3lWkO';
+    var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
+    var options = {
+        scope: bucket,
+    }
+    var putPolicy = new qiniu.rs.PutPolicy(options);
+    var uploadToken = putPolicy.uploadToken(mac);
     return res.json({
-        id: req.currentUser.id,
-        username: req.currentUser.username,
-        authorization: req.currentUser.authorization
+        token: uploadToken
     });
 });
 
-router.use('/hello',function(req, res, next){
-    res.send("hello world");
-});
-
+router.use('/api',require('./app/api/auth'));
 
 module.exports = router;
