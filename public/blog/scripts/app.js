@@ -1,8 +1,10 @@
 ﻿(function(angular){
     'use strict';
-    angular.module('mainblog',['ngRoute'])
+    angular.module('mainblog',['ngRoute', 'ui.bootstrap', 'ngCookies'])
         .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/t1', {
+            $routeProvider.when('/',{
+                templateUrl: 'view/home.html'
+            }).when('/t1', {
                 templateUrl: 'view/1.html',
 				controller: 't1Controller'
             }).when('/t2', {
