@@ -8,7 +8,7 @@
  * Controller of the qiniuUploadApp
  */
 angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
-	.controller('MainCtrl', function ($scope, $log, $qupload,$http) {
+	.controller('MainCtrl', ['$scope','$log','$qupload','$http','qrCodeService',function ($scope, $log, $qupload,$http,qrCodeService) {
 
 		$scope.selectFiles = [];
 		var uploadtoken = '';
@@ -17,14 +17,12 @@ angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
 			$scope.selectFiles[index].progress = {
 				p: 0
 			};
-			console.log("start");
-			console.log("key : " + $scope.selectFiles[index].file.name);
 			$scope.selectFiles[index].upload = $qupload.upload({
 				key: 'test/' + $scope.selectFiles[index].file.name,
 				file: $scope.selectFiles[index].file,
 				token: uploadtoken
 			});
-			console.log("end");
+
 			$scope.selectFiles[index].upload.then(function (response) {
 				$log.info(response);
 			}, function (response) {
@@ -49,7 +47,11 @@ angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
 					};
 					start(i + offsetx);
 				}
-			}, function errorFn(response){
+			}, function errorFn(){
 			});
 		};
-	});
+
+		$scope.downloadQRCode = function(){
+			qrCodeService.downloadPNG({ text: 'http://www.baidu.com', fileName: '百度搜索' + '.png' });
+		};
+	}]);

@@ -5,11 +5,6 @@
 const express = require('express');
 const router = express.Router();
 
-const async = require('async');
-const NSError = require('./app/lib/error-model');
-const User = require('./app/model/authuser');
-const JWT = require('./app/lib/json-web-token');
-const ObjectId = require('mongoose').Types.ObjectId;
 const qiniu = require('qiniu');
 
 router.get('/qupload',function(req,res,next){

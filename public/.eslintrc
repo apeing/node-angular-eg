@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "camelcase": 1,
+    "comma-dangle": 2,
+    "quotes": 0
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "globals": {
+    "angular": true,
+    "async": true,
+    "_": true
+  },
+  "extends": "eslint:recommended"
+}
