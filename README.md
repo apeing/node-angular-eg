@@ -1,8 +1,19 @@
 # node-angular-eg
 
-node angular project demo
+angularjs笔记
 
-8.1-8.7 添加了blog登录登出cookies信息处理的eg
+一、运行框架MEAN系统
+
+二、模块
+
+1、json-web-token实例
+
+2、ngcookies实例
+
+3、kjua实例
+
+4、页面bar布局
 
 网页
+
 http://www.apetribe.net
