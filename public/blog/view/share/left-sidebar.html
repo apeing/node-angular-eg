@@ -1,0 +1,18 @@
+<setion id="left_sidebar_container" ng-controller="leftSidebarController">
+    <nav>
+        <li ng-repeat="el in menuList" >
+            <dl>
+                <dt ng-click="el.$zhankai=!el.$zhankai">
+                    <i class="glyphicon" ng-class="el.iconClass"></i>
+                    <span>{{el.name}}</span>
+                </dt>
+                <dd ng-show="el.$zhankai">
+                    <p class="clearfix" ng-repeat="item in el.list" ng-click="showItem(el, $index)">
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                        <span>{{item.title}}</span>
+                    </p>
+                </dd>
+            </dl>
+        </li>
+    </nav>
+</setion>

@@ -3,10 +3,15 @@
     <head>
         <title>blog</title>
         <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/left-sidebar.css">
+        <link rel="stylesheet" href="css/top-sidebar.css">
+        <link rel="stylesheet" href="css/base.css">
 		<script src="//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
         <script src="//cdn.bootcss.com/angular.js/1.5.8/angular-route.min.js"></script>
         <script src="//cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
         <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js"></script>
+        <script src="//cdn.bootcss.com/lodash.js/4.17.2/lodash.min.js"></script>
+        <script src="../lib/kjua/dist/kjua.min.js"></script>
 
 		<!-- <script src="../lib/angular/angular.js"></script> -->
 
@@ -17,12 +22,17 @@
         <div uib-alert class='alert' ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" dismiss-on-timeout="{{alert.delayTime}}" close="closeAlert($index)">{{alert.msg}}</div>
     </div>
     <ng-include src="'view/share/top-bar.html'"></ng-include>
-        <h1>test mainblog</h1>        
-        <div ng-view></div>  
+    <section id="tt_content_container">
+        <ng-include src="'view/share/left-sidebar.html'"></ng-include>
+        <div class="tt_right_content_container">
+            <div ng-view></div>
+        </div>
+    </section>
     </body>
     <!-- build:js1 js/index-app.js -->
     <script src="./scripts/app.js"></script>
     <script src="./scripts/service/alert.js"></script>
     <script src="./scripts/controller/top-bar.js"></script>
     <script src="./scripts/controller/t1controller.js"></script>
+    <script src="./scripts/controller/leftside.js"></script>
 </html>

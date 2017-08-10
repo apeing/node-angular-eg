@@ -9,7 +9,9 @@
 				controller: 't1Controller'
             }).when('/t2', {
 				templateUrl: 'view/2.html'
-			}).otherwise({
+			}).when('/user/list', {
+                templateUrl: 'view/user/list.html'
+            }).otherwise({
                 redirectTo: '/'
             });
         }]).run(['$rootScope', '$window', function($rootScope, $window) {
