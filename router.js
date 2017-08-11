@@ -23,5 +23,6 @@ router.get('/qupload',function(req,res,next){
 });
 
 router.use('/api',require('./app/api/auth'));
+router.use('/wechat',require('./app/wechat'));
 
 module.exports = router;

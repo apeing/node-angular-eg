@@ -1,0 +1,133 @@
+/*无确定按钮提示信息弹窗样式*/
+#tt_alert_message{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 9999;
+    display: -webkit-flex;
+    display:flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    display:-webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    .tt_message{
+        display: inline-block;
+        max-width:90%;
+        padding:.4rem .8rem;
+        background: #000;
+        opacity: 0.8;
+        border-radius: .5rem;
+        color:#fff;
+        font-size: .7rem;
+        line-height: 120%;
+    }
+}
+
+/*loading*/
+#tt_loading{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 10000;
+    .tt_mask{
+        width:100%;
+        height:100%;
+        background: #000;
+        opacity: 0.7;
+    }
+    .tt_container_box{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        z-index: 1;
+        display: -webkit-flex;
+        display:flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        display:-webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        .tt_img_box{
+            width:1.5rem;
+            height:1.5rem;
+        }
+
+    }
+}
+
+
+/*有确定按钮提示信息弹窗样式*/
+#tt_confirm_messages{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 99999;
+    .tt_mask{
+        width:100%;
+        height:100%;
+        background: #000;
+        opacity: 0.6;
+    }
+    .tt_container_box{
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        z-index: 1000;
+        display: -webkit-flex;
+        display:flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        display:-webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        .tt_container_warp{
+            position: relative;
+            width:11.5rem;
+            padding:0.75rem;
+            background: #fff;
+            border:0.15rem solid #14944A;
+            .tt_title{
+                font-size: 1.1rem;
+                line-height: 2.7rem;
+                color:#2E994B;
+                text-align: center;
+            }
+            .tt_message{
+                margin-left: 0.55rem;
+                margin-right: 0.55rem;
+                font-size: 0.7rem;
+                line-height:0.9rem;
+                color:#666;
+                text-align: center;
+            }
+            .tt_btn{
+                margin-top: 1.37rem;
+                width: 100%;
+                height:1.75rem;
+                font-size: 0.9rem;
+                line-height: 1.75rem;
+                background: #C2D95C;
+                color:#fff;
+                text-align: center;
+                border-radius: 0.15rem;
+            }
+        }
+    }
+}

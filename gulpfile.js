@@ -11,7 +11,7 @@ function compileLess(path){
     gulp.src(srcPath).pipe(less()).pipe(gulp.dest(destPath));
 }
 
-gulp.task('less',['blog/'].forEach(compileLess));
+gulp.task('less',['blog/','wechat/activity/'].forEach(compileLess));
 
 gulp.task('bower', function() {
     return bower();

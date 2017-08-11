@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-touch-fullscreen" content="YES"/>
+    <meta name="apple-moblie-web-app-status-bar-style" content="black"/>
+    <!-- 以下三个为清理浏览器缓存使用达到刷新能起到重新获取服务器的效果 -->
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+
+    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/base-class.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/notice.css"/>
+    <link rel="stylesheet" href="css/rem.css"/>
+    <link href="//cdn.bootcss.com/angular-loading-bar/0.9.0/loading-bar.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.8/angular-route.min.js"></script>
+    <script src="//cdn.bootcss.com/angular-local-storage/0.5.0/angular-local-storage.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="lib/share.js"></script>
+    <script src="/lib/kjua/dist/kjua.min.js"></script>
+    <script src="/lib/angular-qiniu-upload/src/qupload.js"></script>
+
+    <script src="script/app.js"></script>
+    <script src="script/controller/index.js"></script>
+    <script src="script/controller/login.js"></script>
+    <script src="script/controller/notice.js"></script>
+    <script src="script/controller/register.js"></script>
+    <script src="script/service/alertmessage.js"></script>
+    <script src="script/service/queryparameter.js"></script>
+    <script src="script/service/confirm-message.js"></script>
+
+    <title>index</title>
+</head>
+<body ng-app="activity">
+<div style="height:100%;" ng-view></div>
+<div id="tt_confirm_messages" class="ng-hide" ng-show="showConfirmMessageBtn">
+    <div class="tt_mask"></div>
+    <div class="tt_container_box">
+        <div class="tt_container_warp">
+            <h3 class="tt_title">{{confirmTitle}}</h3>
+            <p class="tt_message">{{confirmMessage}}</p>
+            <div class="tt_btn" ng-click="showConfirmMessageBtn=false">{{confirmBtnText}}</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

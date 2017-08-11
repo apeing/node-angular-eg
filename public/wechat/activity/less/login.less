@@ -1,0 +1,77 @@
+@import (reference) 'base-class.less';
+
+.tt_login_container{
+    min-height: 100%;
+    background: url(/wechat/activity/css/login_top_bg.jpg) no-repeat 0 top,
+                url(/wechat/activity/css/login_bottom_bg.jpg) no-repeat 0 bottom;
+    background-size: 100% auto;
+    .tt_content{
+        padding: @_110 @_18 @_314;
+    }
+    header{
+        padding-left:@_12;
+        padding-right:@_102;
+        font-size: @_30;
+        line-height: @_40;
+        color: #333;
+    }
+    .tt_text_input{
+        margin-top: @_44;
+        margin-bottom: @_94;
+    }
+    dl{
+        margin-top: @_26;
+        dt{
+            margin-left: @_12;
+            font-size: @_34;
+            line-height: @_66;
+            color: #333;
+        }
+        dd{
+            display: flex;
+            display: -webkit-flex;
+            padding: @_8 @_12 @_8 @_24;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+        input{
+            flex:1;
+            -webkit-flex: 1;
+            font-size: @_30;
+            line-height: @_70;
+            color: #333;
+        }
+        dd.tt_verify_con{
+            input{
+                margin-right: @_20;
+                flex:2;
+                -webkit-flex: 2;
+            }
+            .tt_verify_box{
+                flex:1;
+                -webkit-flex: 1;
+            }
+        }
+    }
+    footer{
+        div{
+            margin-bottom: @_32;
+            font-size: @_36;
+            line-height: @_80;
+            background: #14944A;
+            color: #fff;
+            border-radius: @_40;
+            text-align: center;
+        }
+        .tt_tips{
+            margin-left: @_12;
+            margin-right: @_12;
+            font-size: @_26;
+            line-height: @_34;
+            color: #333;
+            a{
+                color: #EF4A4E;
+            }
+        }
+    }
+}

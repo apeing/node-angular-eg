@@ -1,0 +1,28 @@
+<section class="tt_login_container">
+    <div class="tt_content">
+        <header>请填写您的手机号码，这个号码会作为您孩子的参赛凭证。</header>
+        <div class="tt_text_input">
+            <dl>
+                <dt>手机号</dt>
+                <dd>
+                    <input type="tel" ng-model="mobile" placeholder="请输入手机号码"/>
+                </dd>
+                <dt>密码</dt>
+                <dd>
+                    <input type="psd" ng-model="password" placeholder="请输入密码">
+                </dd>
+                <dt>确定密码</dt>
+                <dd>
+                    <input type="repsd" ng-model="repassword" placeholder="再次输入密码">
+                </dd>
+            </dl>
+        </div>
+        <footer>
+            <div ng-click="save()">确定注册</div>
+            <p class="tt_tips">
+                点击：<a href="#/login">返回登录页面</a>
+            </p>
+        </footer>
+    </div>
+
+</section>

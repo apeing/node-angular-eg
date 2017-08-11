@@ -1,0 +1,39 @@
+@import 'rem.less';
+
+// 上下左右居中（加到需要居中元素的父级上）
+.tt_flex_center{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+
+// 清除浮动
+.tt_clearfix {
+    display: block;
+    zoom: 1;
+    &:after {
+        content: " ";
+        display: block;
+        font-size: 0;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+//超出显示省略号（需要设置width）
+.tt_overflow_ellipsis{
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+//强制换行
+.tt_line_break{
+    word-break:break-all; /*支持IE，chrome，FF不支持*/
+    word-wrap:break-word;/*支持IE，chrome，FF*/
+}

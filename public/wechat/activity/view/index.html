@@ -1,0 +1,21 @@
+<section class="tt_login_container">
+    <div class="tt_content">
+        <header>index页面</header>
+        <div>
+            <h1>hello:{{mobile}}</h1>
+            <div ng-file-select="onFileSelect($files)" data-multiple="true" title="select file" onclick="this.value = null" class="btn btn-upload">Click here to select file</div>
+            <ol>
+                <li ng-repeat="(k,v) in selectFiles">
+                    {{v.file.name}} - {{v.progress.p}}% <button ng-click="abort(k)">x</button>
+                </li>
+            </ol>
+        </div>
+        <footer>
+            <div ng-click="reout()">登录</div>
+            <p class="tt_tips">
+                选手报名即默认参赛作品的版权归大赛组委会所有。详情请见《<a href="#/notice">报名须知</a>》
+            </p>
+        </footer>
+    </div>
+
+</section>
