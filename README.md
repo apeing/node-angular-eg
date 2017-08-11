@@ -1,3 +1,19 @@
 # node-angular-eg
-node angular project demo
-8.1-8.7 Ìí¼ÓÁËblogµÇÂ¼µÇ³öcookiesĞÅÏ¢´¦ÀíµÄeg
+
+angularjsç¬”è®°
+
+ä¸€ã€è¿è¡Œæ¡†æ¶MEANç³»ç»Ÿ
+
+äºŒã€æ¨¡å—
+
+1ã€json-web-tokenå®ä¾‹
+
+2ã€ngcookieså®ä¾‹
+
+3ã€kjuaå®ä¾‹
+
+4ã€é¡µé¢barå¸ƒå±€
+
+ç½‘é¡µ
+
+http://www.apetribe.net
