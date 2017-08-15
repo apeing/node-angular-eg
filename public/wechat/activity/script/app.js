@@ -3,7 +3,7 @@
  */
 (function(angular){
     'use strict';
-    angular.module('activity',['ngRoute','ngCookies','angularQFileUpload', 'LocalStorageModule'])
+    angular.module('activity',['ngRoute','ngCookies','ngFileUpload','angularQFileUpload', 'LocalStorageModule'])
         .config(['$routeProvider', 'localStorageServiceProvider', function ($routeProvider, localStorageServiceProvider) {
             $routeProvider.when('/login', {
                 templateUrl: 'view/login.html',
@@ -17,6 +17,9 @@
             }).when('/register', {
                 templateUrl: 'view/register.html',
                 controller: 'RegisterController'
+            }).when('/picture', {
+                templateUrl: 'view/picture/list.html',
+                controller: 'pictureListController'
             }).otherwise({
                 redirectTo: '/index'
             });

@@ -31,6 +31,9 @@
             $scope.selectFiles[index].upload.abort();
             $scope.selectFiles.splice(index, 1);
         };
+        $scope.uploadpic = function(){
+            $location.path('/picture').replace();
+        };
         $scope.reout = function(){
             $cookies.remove('token');
             $location.path('/login').replace();

@@ -1,0 +1,113 @@
+<section class="tt_picture_list_section">
+    <header>
+        <p>
+            <span ng-show="show_screen">活动照片墙</span>
+            <span ng-show="!show_screen">照片管理</span>
+            <a ng-href="http://www.baidu.com">welcome {{mobile}} &gt;</a>
+        </p>
+    </header>
+    <p ng-show="uploadtag" class="upload_img_number">图片上传中...{{uploadnumber}}/{{uploadsum}}</p>
+    <div id="tt_confirm_messages" class="ng-hide" ng-show="showConfirmMessageBtn">
+        <div class="tt_mask"></div>
+        <div class="weui-dialog">
+            <p class="weui-dialog__bd">{{confirmMessage}}</p>
+            <div class="weui-dialog__ft">
+                <a class="weui-dialog__btn" ng-click="rootbtn1()">{{confirmBtnText}}</a>
+                <a class="weui-dialog__btn" ng-click="rootbtn2()">{{confirmBtnText2}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="tt_content" ng-show="show_screen">
+        <ul ng-if="pictures.length!=0">
+            <li ng-repeat="picture in pictures">
+                <img class="childPhoto" ng-click="openPhotoSwipe(picture._id)" ng-src="{{picture.url}}?imageView2/1/w/{{img_w}}/h/{{img_h}}"/>
+            </li>
+        </ul>
+        <div class="no_order_list" ng-if="pictures.length==0">
+            <img alt="上传文件" src="images/upload_file.png">
+            <p class="tip">还木有活动照片<br/>快去上传一张吧～</p>
+        </div>
+    </div>
+
+    <div class="tt_content" ng-show="!show_screen">
+        <ul ng-if="delpictures.length!=0">
+            <li ng-repeat="picture in delpictures">
+                <div class="img-check">
+                    <img class="childPhoto" ng-click="delphoto(picture._id)" ng-src="{{picture.url}}?imageView2/1/w/{{img_w}}/h/{{img_h}}"/>
+                    <span ng-class="{true: 'del_check', false: ''}[picture.isActive]"></span>
+                </div>
+            </li>
+        </ul>
+        <div class="no_order_list" ng-if="pictures.length==0">
+            <img alt="上传文件" src="images/upload_file.png">
+            <p class="tip">还木有活动照片<br/>快去上传一张吧～</p>
+        </div>
+    </div>
+    <footer ng-if="'init' == del_img" class="tt-upload-img">
+        <a  ngf-select ngf-change="uploadImage($files)" ngf-multiple="true" accept="image/jpg, image/jpeg, image/gif, image/x-png, image/png">上传活动照片</a>
+        <a  ng-click="delImages()">管理</a>
+    </footer>
+    <footer ng-if="'del' == del_img" class="tt-del-img">
+        <a  ng-click="delImages_cancel()">取消</a>
+        <a  ng-click="delImages_Ok()">删除照片</a>
+    </footer>
+    <footer ng-if="'upload' == del_img" class="tt-upload-img2">
+        <a  ng-click="cancel_upload()">取消上传</a>
+    </footer>
+</section>
+
+<!-- 点击查看大图 -->
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <div class="pswp__container">
+            <!-- don't modify these 3 pswp__item elements, data is added later on -->
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- loading -->
+<div id="tt_loading" class="ng-hide" ng-show="isBusy" style="display: block">
+    <div class="tt_container_box">
+        <div class="tt_img_box">
+            <img width="100%" src="images/loading.gif" alt="">
+        </div>
+    </div>
+    <div class="tt_mask"></div>
+</div>
