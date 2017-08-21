@@ -136,7 +136,7 @@
                     if (file.size > 5242880)
                         return alert('文件：' + file.name + '太大了，一张照片不能超过5Mb');
                     //   busyIndicatorService.showBusyIndicator();
-                    $http.get('/qupload').success(function(resobj) {
+                    $http.get('/api/qupload').success(function(resobj) {
                         var upload = $qupload.upload({
                             key: 'angularjs-eg/' + $scope.mobile + '/' + file.name,
                             file: file,

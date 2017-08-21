@@ -52,7 +52,7 @@
             function init(){
                 $scope.menuList = [];
                 //获取登录用户信息
-                $http.get('/api/user').then(function successFn(response){
+                $http.get('/blog/user').then(function successFn(response){
                     var authorizations = response && response.data && response.data.authorization;
                     $window._.uniq(authorizations).forEach(function(auth){
                         var item = $window._.find(leftSidebarItems, {'auth':auth});

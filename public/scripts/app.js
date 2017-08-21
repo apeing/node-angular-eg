@@ -38,7 +38,7 @@ angular.module('qiniuUploadApp', ['angularQFileUpload', 'LocalStorageModule'])
 		};
 
 		$scope.onFileSelect = function ($files) {
-			$http.get('/qupload').then(function successFn(response){
+			$http.get('/api/qupload').then(function successFn(response){
 				uploadtoken = response && response.data && response.data.token;
 				var offsetx = $scope.selectFiles.length;
 				for (var i = 0; i < $files.length; i++) {
