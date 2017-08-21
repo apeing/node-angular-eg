@@ -1,7 +1,6 @@
 /**
- * Created by Administrator on 2017/8/8.
+ * Created by Administrator on 2017/8/21.
  */
-'use strict';
 const express = require('express');
 const router = express.Router();
 
@@ -12,7 +11,6 @@ const JWT = require('../lib/json-web-token');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 router.post('/auth', function(req, res, next){
-    console.log("post commond");
     var username = req.body.username;
     var password =  req.body.password;
     User.findOne({'username': username}, function(err, user){
@@ -33,7 +31,6 @@ router.post('/auth', function(req, res, next){
 router.use('/', function(req, res, next){
     var userId = req.cookies.userId;
     var token = req.cookies.token;
-    console.log("*********router use ********** token :" + token);
     if(!userId || !token) return next(NSError.needLogin('超时，请重新登陆'));
     if (!ObjectId.isValid(userId)) return next(NSError.needLogin(personId));
     async.waterfall([
@@ -71,10 +68,5 @@ router.get('/user',function(req, res, next){
         authorization: req.currentUser.authorization
     });
 });
-
-router.use('/hello',function(req, res, next){
-    res.send("hello world");
-});
-
 
 module.exports = router;
