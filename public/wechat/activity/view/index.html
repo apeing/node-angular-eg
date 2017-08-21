@@ -10,7 +10,19 @@
                 </li>
             </ol>
         </div>
+        <div>
+            <wx-img ng-repeat="per in pictures"></wx-img>
+            <h1>{{medias}}</h1>
+            <ul>
+                <li ng-repeat="picture in pictures">
+                    <img src="{{picture}}"/>
+                </li>
+            </ul>
+        </div>
+
         <footer>
+
+            <div ng-click="sdkpic()">微信sdk图片获取</div>
             <div ng-click="uploadpic()">上传照片</div>
             <div ng-click="reout()">登出</div>
             <p class="tt_tips">

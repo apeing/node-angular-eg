@@ -7,6 +7,8 @@ const router = express.Router();
 
 const qiniu = require('qiniu');
 
+router.use('/signature',require('./app/signature'));
+router.use('/oauth',require('./app/oauth/oauth'));
 router.get('/qupload',function(req,res,next){
     var bucket = 'test';
     var accessKey = 'TXXu7FXig6oU1gLNMGERucvQvYjMvoKKQs_WQjqe';
