@@ -16,4 +16,11 @@ angularjs笔记
 
 网页
 
-http://www.apetribe.net
+三、结构
+
+1、public根目录index.html上传七牛云接口、生成二维码接口服务的eg实例
+
+2、blog功能为桌面浏览器web业务实例
+
+3、wechat为移动端微信平台的业务实例
+
