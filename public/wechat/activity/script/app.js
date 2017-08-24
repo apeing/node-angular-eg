@@ -32,10 +32,6 @@
         console.log('run! ');
         var initData = {
             signatureServer: 'http://5307c5e1.nat123.net',
-            title: '《笔记大自然》画语大赛作品欣赏',
-            logo: 'https://o5ghe186j.qnssl.com/chengdu-shuohua-2017-03/images/share_logo.jpg',
-            description: '我参加了成都市《笔记大自然》画语大赛，来看看我的作品吧！',
-            link: $window.location.origin + '/chengdu-shuohua-2017-03/intro/gateway.html',
             jsApiList: ['onMenuShareTimeline', 'hideMenuItems', 'onMenuShareAppMessage', 'getLocation', 'startRecord', 'onVoiceRecordEnd', 'stopRecord', 'onVoicePlayEnd', 'playVoice', 'pauseVoice', 'stopVoice', 'uploadVoice', 'downloadVoice', 'chooseWXPay','chooseImage']
         };
         $window.share.init(initData, function(err){

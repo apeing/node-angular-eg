@@ -8,8 +8,20 @@ const router = express.Router();
 const async = require('async');
 const NSError = require('../lib/error-model');
 const User = require('../model/weuser');
+const WeChatUser = require('nightshade-core').Core.WeChatUser;
 const JWT = require('../lib/json-web-token');
 const ObjectId = require('mongoose').Types.ObjectId;
+
+router.get('/unionid/:unionid',function(req,res,next){
+    console.log('unionid : ' + req.params.unionid)
+    WeChatUser.findOne({'unionid':req.params.unionid},function(err,wechatuser){
+        if(err) return next(err);
+        if(!wechatuser) return next(NSError.warning('没有此用户'));
+        var expireTime = new Date(Date.now() + 1800000);
+        res.cookie('unionid', wechatuser.unionid, {'expires': expireTime});
+        return res.status(200).json({});
+    });
+});
 
 router.post('/load', function(req, res, next){
     var mobile = req.body.mobile;
@@ -44,42 +56,21 @@ router.post('/register', function(req, res, next){
 });
 
 router.use('/', function(req, res, next){
-    var userId = req.cookies.userId;
-    var token = req.cookies.token;
-    if(!userId || !token) return next(NSError.needLogin('超时，请重新登陆'));
-    if (!ObjectId.isValid(userId)) return next(NSError.needLogin(personId));
-    async.waterfall([
-        function findUser(callback){
-            User.findById(userId, function(err, user){
-                if(err) return callback(err);
-                if (!user) return callback(NSError.needLogin(userId));
-                return callback(null, user);
-            });
-        },
-        function verifyToken(user, callback){
-            JWT.verifyToken('Bearer ' + token, user.secret, function(err, decode){
-                if (err) {
-                    console.error(err);
-                    return callback(NSError.needLogin(decode));
-                }
-                if (!decode.scopes || !decode.scopes.user || decode.scopes.user._id !== user.id) return callback(NSError.needLogin('Token与用户信息不匹配'));
-                req.currentUser = user;
-                res.cookie('userId', userId, {
-                    expires: new Date(Date.now() + 7200000) //登录30分钟超时
-                });
-                res.cookie('token', token, {
-                    expires: new Date(Date.now() + 7200000) //登录30分钟超时
-                });
-                callback();
-            });
-        }
-    ], next);
+    var unionid = req.cookies.unionid;
+    console.log("/unionid : " + unionid);
+    if(!unionid) return next(NSError.needLogin('超时，请重新登陆'));
+    WeChatUser.findOne({'unionid':unionid}, function(err, user){
+        if(err) return next(err);
+        if (!user) return next(NSError.needLogin(password));
+        req.currentUser = user;
+        return next();
+    });
 });
 
 router.get('/user',function(req, res, next){
-    return res.json({
-        id: req.currentUser.id,
-        mobile: req.currentUser.mobile
+ //   console.log("currentUser : " + JSON.stringify(req.currentUser));
+    return res.status(201).json({
+        mobile: req.currentUser.unionid
     });
 });
 
